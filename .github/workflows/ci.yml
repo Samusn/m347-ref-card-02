@@ -21,3 +21,15 @@ jobs:
             context: .
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/m347-ref-card-02:latest
+
+        - uses: docker/login-action@v3
+          with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+
+        - uses: docker/build-push-action@v5
+          with:
+            context: .
+            push: true
+            tags: ghcr.io/samusn/m347-ref-card-02:latest
